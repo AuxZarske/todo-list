@@ -6,6 +6,10 @@ from .managers import CustomUserManager
 
 
 class CustomUser(AbstractUser):
+    """
+    Se define un nuevo modelo de usuario partiendo de AbstracUser, quitando el username,
+    y se agregan los campos "country" y "description"
+    """
     username = None
     email = models.EmailField(_("email address"), unique=True)
     country = models.CharField(max_length=40, blank=True)

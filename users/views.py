@@ -9,10 +9,16 @@ from .serializers import CustomUserSerializer
 from .permissions import IsUnauthenticatedOrStaffOrAdmin
 
 class UserViewSet(viewsets.ModelViewSet):
+    """
+    Definicion de la vista para users.
+    """
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
 
     def get_permissions(self):
+        """
+        Se limita el acceso si no esta autentificado, excepto si se trata de crear/registrar.
+        """
         if self.action in ['list', 'retrieve', 'update', 'destroy']:
             return [IsAuthenticated()]
         elif self.action == 'create':
@@ -20,6 +26,9 @@ class UserViewSet(viewsets.ModelViewSet):
         return super(UserViewSet, self).get_permissions()
     
     def list(self, request, *args, **kwargs):
+        """
+        Se define la devolucion de todos los usuarios si es admin o solo los datos propios.
+        """
         if request.user.is_superuser:
             queryset = self.queryset
         else:
@@ -28,6 +37,9 @@ class UserViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
+        """
+        Se registra un nuevo usuario en el sistema y se validan sus datos para hacerlo.
+        """
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
@@ -36,6 +48,9 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class LogoutViewSet(viewsets.ViewSet):
+    """
+    Se define el logout del sistema, se colocan los refres token el la black list.
+    """
     permission_classes = (IsAuthenticated,)
 
     @action(detail=False, methods=['post'])
