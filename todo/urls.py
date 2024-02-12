@@ -7,9 +7,11 @@ from rest_framework_simplejwt.views import (
 )
 
 from users.views import UserViewSet, LogoutViewSet
+from tasks.views import TaskViewSet
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet, basename='user')
+router.register(r'tasks', TaskViewSet, basename='task')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
