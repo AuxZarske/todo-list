@@ -6,3 +6,42 @@ db.sqlite3
 
 #variables de entorno
 .env
+
+# Archivos de configuración específicos de la máquina
+*.sqlite3
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.log
+*.idea/
+
+# Archivos y directorios generados por Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.pyproj
+*.python-version
+
+
+# Archivos de compilación y directorios
+*.exe
+*.dll
+*.obj
+*.o
+*.a
+*.lib
+*.so
+*.dylib
+*.bak
+*.tmp
+*.swp
+*.out
+*.vscode/
+
+# archivos generados por el sistema
+Thumbs.db
