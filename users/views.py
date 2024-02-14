@@ -6,7 +6,8 @@ from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, Bl
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import CustomUser
 from .serializers import CustomUserSerializer
-
+import logging
+logger = logging.getLogger( __name__ )
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -40,6 +41,7 @@ class UserViewSet(viewsets.ModelViewSet):
         """
         Se registra un nuevo usuario en el sistema y se validan sus datos para hacerlo.
         """
+        logger.info('User IP: %s Request Method: %s Request URL: %s' % (request.META.get('REMOTE_ADDR'), request.method, request.path))
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
