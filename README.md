@@ -2,12 +2,19 @@
 
 Proyecto simple para la creacion de tareas pendientes a realizar, donde una persona se registra en el sistema y una vez autentificado procede a crear tareas, para luego marcarlas como completadas.
 
-## Pasos para su ejecución:
+## Pasos para su ejecución (sin docker):
 
 - Clonar el repositorio
 - Crear un entorno virtual e instalar los requerimientos del proyecto (pip install -r requirements.txt).
 - Crear un archivo .env y agregar las varibles de entorno, como ejemplo esta el archivo .env.example
 - Ejecutar el sistema (python manage.py runserver)
+
+## Pasos para su ejecución (usando docker):
+
+- Clonar el repositorio
+- Construir la imagen (docker build -t challengetodo .)
+- Levantar el contenedor (docker run -p 8000:8000 challengetodo)
+
 
 ## Forma de interactuar:
 
